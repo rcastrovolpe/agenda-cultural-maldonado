@@ -25,7 +25,7 @@ Registro acumulado de qué fuentes funcionan, cuáles no, y qué se aprendió en
 | 17 | Grupocine — API https://grupocine.com.uy/api/peliculas | 3 | 2 | 0 eventos específicos de PDE, pero útil para cruzar estrenos y detectar flag "especial" | Catálogo nacional sin desglose por sucursal; el campo `"especial"` del JSON es útil para detectar funciones especiales marcadas por la cadena (esta semana ninguna lo estaba). |
 | 18 | Cinepunta — https://cinepunta.uy/ | 1/3 | 3 | 0 actividad en ventana, pero confirma fechas de la 29ª edición | 29° Festival confirmado para 20-26/2/2027; convocatoria de films abierta hasta 31/10/2026 (no es evento para público general). |
 | 19 | Songkick (venue Enjoy Punta del Este) | 5 | 3 | 0, pero el slug ya no da error | Nueva URL estable: https://www.songkick.com/venues/4485281-enjoy-punta-del-este — carga bien pero 0 shows listados. Usar esta URL de ahora en más. |
-| 20 | RedTickets Uruguay | 5 | 3 | 0 (contenido de prueba/placeholder, sin filtro funcional) | Tercera semana sin oferta real de Maldonado — un strike más y pasa a Descartadas. |
+| 20 | RedTickets Uruguay → **ticketmaster.uy** (migración confirmada sem.4) | 5 | 4 (3 como RedTickets + 1 como ticketmaster.uy) | 0 | El dominio redtickets.com.uy ya no resuelve (DNS). RED UTS/RedTickets fue adquirida por Ticketmaster en agosto 2026; el sitio nuevo es ticketmaster.uy, pero da HTTP 403 — mismo resultado, nuevo nombre. Seguir probando ticketmaster.uy de ahora en más, contador de strikes reiniciado en esta semana. |
 | 21 | Abitab Entradas | 5 | 3 | 0 (403 recurrente; esta semana solo aparece como canal de venta de un show de San Carlos fuera de ventana) | Tercera semana sin aporte directo — un strike más y pasa a Descartadas. |
 | 22 | Tickantel | 5 | 3 | 0 (error distinto cada semana: redirecciones / 503 / sin acceso directo) | Tercera semana sin aporte directo — un strike más y pasa a Descartadas. |
 | 23 | Bandsintown (4 páginas de ciudad) | 5 | 3 | 0, HTTP 403 en las 4 URLs, 3 semanas seguidas | Un strike más y pasa a Descartadas. |
@@ -47,7 +47,17 @@ Registro acumulado de qué fuentes funcionan, cuáles no, y qué se aprendió en
 - ⚠️ **portada.com.uy/agenda-portada** (URL fija): sigue sin funcionar (404). Pero el dominio portada.com.uy en general, consultado vía WebSearch con términos específicos, SÍ aportó 2 eventos verificados esta semana — cambiar el método de consulta (dejar de intentar la URL fija, usar WebSearch dirigido al dominio).
 
 ## Descartadas
-(Todavía ninguna fuente lleva 4 ejecuciones seguidas sin aportar — esta es la 3ª ejecución. Fuertes candidatas a pasar a Descartadas la próxima semana si vuelven a dar 0: **RedTickets, Abitab, Tickantel, Bandsintown, Piriápolis NET, Montevideo Portal, Portal de Piriápolis**, y el subgrupo de locales **Cervecería Giros, Lemon Pub, Mala Junta, Mockers, Solís Resto Pub, Piano Bar, Subsuelo**. El Calendario PDF oficial vía /actividades también está muy cerca de descartarse por cambio de contenido del link. El resto de los locales de Nivel 4 (Paseo La Pasiva, Club Centro Progreso, Ex Estación AFE, Pueblo Gaucho) NO son candidatos a descarte — están confirmados activos, solo falta encontrar su canal de difusión semanal.)
+(Fuentes con 4 ejecuciones seguidas sin aportar nada — se dejan de consultar cada semana, revisar solo ocasionalmente cada 4-5 semanas por si cambian de estado.)
+
+- **Cervecería Giros, Lemon Pub, Mala Junta, Mockers, Solís Resto Pub, Piano Bar, Subsuelo** (Nivel 4) — 4 semanas seguidas en 0 (sem. 1 a 4). WebSearch no indexa sus redes sociales; sin cobertura de prensa que los mencione con agenda puntual.
+- **Portal de Piriápolis** (piriapolisportal.com.uy) — 4 semanas seguidas en 0 (HTTP 503 recurrente).
+- **Montevideo Portal, sección Maldonado/Tiempo Libre** — 4 semanas seguidas en 0 (solo contenido cacheado de meses anteriores).
+- **Piriápolis NET** — 4 semanas seguidas en 0 (contenido archivado de 2022-2023, nunca actualizado).
+- **Bandsintown** (3 URLs de ciudad: Piriápolis, Maldonado, Punta del Este) — HTTP 403 en las 3, 4 semanas seguidas.
+- **Abitab Entradas** (entradas.abitab.com.uy) — HTTP 403, 4 semanas seguidas.
+- **Facebook Events (búsqueda filtrada) y grupo de Facebook "Agenda Cultural Piriápolis"** — confirmado que requieren login y no son indexables por WebSearch; descartar de la rotación salvo que se consiga acceso autenticado.
+
+(El resto de los locales Nivel 4 — Paseo La Pasiva, Club Centro Progreso/Sala Amalia Quintela, Ex Estación AFE, Pueblo Gaucho — NO son candidatos a descarte: están confirmados activos, y esta semana Pueblo Gaucho incluso aportó un evento puntual (Encuentro de Cuchillería del Este). Tickantel y Songkick tampoco se descartan: dejaron de dar error técnico, solo no tienen eventos relevantes listados todavía.)
 
 ---
 
@@ -229,3 +239,65 @@ Registro acumulado de qué fuentes funcionan, cuáles no, y qué se aprendió en
   2. Agregar www.cure.edu.uy y patrimoniouruguay.net a la lista fija de fuentes de Nivel 1/2, sobre todo útiles en la semana del Día del Patrimonio (principios de octubre) y en general para contenido académico/cultural.
   3. Dejar de reintentar semana a semana las fuentes con 3 strikes seguidos en 0 (RedTickets, Abitab, Tickantel, Bandsintown, Piriápolis NET, Montevideo Portal, Portal de Piriápolis, locales Giros/Lemon Pub/Mala Junta/Mockers/Solís Resto Pub/Piano Bar/Subsuelo): si vuelven a dar 0 la próxima semana, pasan formalmente a "Descartadas" y solo se revisan cada 4-5 semanas en vez de todas las semanas, para no gastar de más.
   4. Cuando varios agentes investigan en paralelo por grupo de fuentes, está bueno seguir haciéndolo (cubre más terreno en el mismo tiempo), pero conviene pedirles explícitamente que marquen con claridad cuándo un evento podría solaparse con otro venue/fuente que esté investigando otro agente (ej. "Día del Patrimonio" tiene actividades repartidas en casi todos los grupos de fuentes) para facilitar la reconciliación final.
+
+---
+
+## Ejecución 2026-10-08
+
+**Nota sobre la fecha (recurrente, 4ª semana seguida):** la corrida volvió a caer en jueves real (8/10/2026), no en miércoles. Se cubrió la ventana jueves 8 al miércoles 14 de octubre de 2026 inclusive (7 días), siguiendo el criterio ya fijado ("hoy al miércoles siguiente inclusive"). Se verificaron las fechas con `date -d` para confirmar día de semana real antes de armar el mail.
+
+**Corrección sobre el mail de la semana pasada:** ningún agente detectó cancelaciones ni errores retroactivos sobre la ventana 1-7/10 ya publicada. Sin novedades que corregir.
+
+**Metodología:** 5 agentes en paralelo por grupo de fuentes (institucional, MACA/CURE/patrimonio, prensa local, cine comercial, locales Nivel 4+agregadores), igual que la semana pasada. Funcionó bien para cobertura, con el inconveniente esperado de alguna superposición menor a reconciliar (ninguna esta vez, a diferencia de semanas anteriores).
+
+**Semana floja:** la cosecha de eventos puntuales con fecha exacta fue baja (9 confirmados, 2 de ellos con fecha/hora débil) — parece ser un valle entre el Día del Patrimonio (3-4/10) y los festivales de fin de octubre (Piriápolis de Película 16-18/10, Rock del Este 17/10, Festival de la Canción ~20-28/10). Se avisó explícitamente en el mail en vez de rellenar con contenido genérico.
+
+- **Fuentes productivas esta semana:**
+  - MACA (macamuseo.org/eventosmaca + entradas.macamuseo.org) — 5 eventos puntuales (cine documental doble con repetición, masterclass de cine, 2 conciertos) + 1 exposición en curso ("Juguemos en el Bosque"). Lejos la fuente más productiva, 4ª semana consecutiva en el puesto 1.
+  - CURE (cure.edu.uy) — 1 evento concreto (charla "Gestionar lo común" el 8/10 en Punta del Este) + contexto de ELERNyMA (encuentro académico, descartado por no verificar apertura al público).
+  - maldonado.gub.uy/cultura — 2 eventos (Encuentro de Cuchillería del Este, EnCanto Criollo con fecha débil) + novedad de renovación del circuito de muestras en 3 sedes (Museo Mazzoni, Foyer María Emma Núñez, Museo San Fernando) con 5 exposiciones nuevas, aunque sin título/horario exacto para algunas.
+  - Cadena del Mar (cadenadelmar.uy/local) — aportó el detalle completo de las 5 muestras del circuito renovado (títulos, artistas, fechas de cierre) que maldonado.gub.uy solo mencionaba de forma genérica. Muy útil para completar un hallazgo de otra fuente.
+  - Semanario La Prensa (Avant-Première) — 2 datos débiles pero reales (presentación disco "Andar" sin fecha exacta, jornada "Punta Negra mira al cielo"); esta vez las fechas de los eventos comunitarios sí coincidieron con el día de semana real de 2026 (verificado explícitamente).
+  - portada.com.uy (vía WebSearch dirigido) — 1 exposición en curso confirmada ("Memorias del Mar", Caja de Arte Punta Shopping).
+  - Cines del Este (API) + Grupocine (API) + cartelera.montevideo.com.uy (Life Cinemas) — sin funciones de cine nacional/ciclos, pero 3 funciones especiales subtituladas detectadas en Life Cinemas (2 en inglés, 1 en italiano sin doblaje) + resumen completo de estrenos.
+  - piriapolisdepelicula.com.uy — confirmó de nuevo fecha (16-18/10) y agregó dato nuevo: homenajes a Perciavalle, Sorín y Tournier, y que el acceso del público es gratuito sin entrada anticipada (solo la convocatoria a cineastas, ya cerrada, requería inscripción).
+  - maldonado.gub.uy (varias páginas vía agente institucional) — descubrió el patrón de URL del PDF mensual de calendario (`sites/default/files/AAAA-MM/`) y confirmó que la versión de octubre todavía no estaba publicada al momento de la consulta (sí existe la de septiembre).
+
+- **Fuentes sin resultados (funcionaron pero no aportaron nada dentro de la ventana):**
+  - maldonado.gub.uy/espectaculos, /eventos (muy ruidoso, 419 resultados sin filtro de fecha útil), /cine (sin programación de octubre para Sala Raimondi), /arte-cultura (desactualizado, último ítem de agosto).
+  - Castillo de Piria (Piriápolis) y Argentino Hotel — sin horarios ni eventos puntuales confirmados (más allá de ser sede de Piriápolis de Película).
+  - radiovivafm.uy — NO reprodujo el hallazgo de semanas anteriores sobre Cerveceros de Maldonado (Octobeerfest/Halloween Beer Fest); la home no mostró agenda de eventos esta vez. Revisar la próxima semana si cambió de sección o canal.
+  - Museo García Uriburu, Museo Ralli — exposiciones permanentes/temporales mencionadas pero sin fechas de vigencia confirmadas para octubre 2026 (quedaron en el mail como "sin confirmar", no como evento puntual).
+  - Correo de Punta del Este — devolvió contenido vacío en los 3 intentos (portada y /agenda/).
+  - ladiaria.com.uy, Liga de Punta del Este, Cuartel de Dragones, Azotea de Haedo (sin resultados vía WebSearch, posible necesidad de red social directa), Teatro Cantegril y Teatro de Verano Margarita Xirgú (sin programación de octubre, solo el Festival de la Canción para "Más adelante").
+  - Tickantel — cargó sin error pero solo lista venues de Montevideo, filtro por departamento no disponible vía WebFetch.
+  - Songkick (Enjoy Punta del Este) — carga bien, "0 Upcoming concerts" explícito.
+  - Paseo La Pasiva, Club Centro Progreso/Sala Amalia Quintela, Ex Estación AFE — sin grilla puntual esta semana (Pueblo Gaucho sí aportó, ver arriba).
+
+- **Fuentes caídas / URL cambiada:**
+  - cultura.maldonado.gub.uy/arte-y-cultura — sigue CAÍDA (error DNS), 5ª semana consecutiva. Sin indicios de resolución; se mantiene en el prompt como fuente Nivel 1 obligatoria pero ya no amerita más que un chequeo rápido.
+  - RedTickets Uruguay (redtickets.com.uy) — el dominio ya no resuelve (DNS). Investigado y confirmado: RED UTS/RedTickets fue adquirida por Ticketmaster en agosto 2026, nuevo sitio **ticketmaster.uy**, que da HTTP 403 (mismo problema, nuevo nombre). Ver fila actualizada en el ranking.
+  - maldonado.gub.uy/actividades — sigue sin resultados directos; redirige a /actividades-eventos (301 → agenda-actividades-idm) y a /calendario-eventos-2026, ambas con contenido mínimo (3 eventos sin fecha/hora/precio).
+  - PDF de calendario mensual de octubre (maldonado.gub.uy/sites/default/files/2026-10/...) — HTTP 404, todavía no publicado al momento de la consulta (el de septiembre sí existe). Reintentar en los próximos días.
+
+- **Fuentes nuevas descubiertas:**
+  - **maldonado.gub.uy/agenda-actividades-idm** y **maldonado.gub.uy/calendario-eventos-2026** — URLs de destino a las que redirige /actividades; tienen contenido mínimo pero vale la pena consultarlas directamente de ahora en más en vez de depender del redirect.
+  - **gub.uy/tramites/festival-internacional-cine-punta-este-2027-inscripciones-maldonado** — página oficial de trámites que confirma fechas y condiciones de Cinepunta 2027.
+  - **ticketmaster.uy** — reemplaza a RedTickets Uruguay (ver arriba), mismo resultado (403) pero nuevo dominio a trackear.
+  - Patrón de URL del calendario mensual de la IDM: `maldonado.gub.uy/sites/default/files/AAAA-MM/CALENDARIO%20DE%20EVENTOS...pdf` — útil para intentar directamente el mes en curso en vez de depender de que /actividades lo enlace.
+
+- **Eventos duplicados o mal fechados detectados:**
+  - Concierto de saxofón y piano del domingo 11/10 en Teatro MACA: la ficha principal (macamuseo.org/eventosmaca) lo llama "Dúo Figueira–Airaudo"; la plataforma de entradas (entradas.macamuseo.org) lo llama "Concierto Dúo Nómade". Mismo día/hora/lugar, nombre distinto — no se pudo resolver cuál es el nombre artístico correcto vía búsqueda externa. Se marcó la discrepancia entre corchetes en el mail, sin descartar el evento.
+  - Festival Internacional de la Canción de Punta del Este (14ª edición): una fuente de prensa (Rio Times/Ground News, citada por el agente institucional) da fechas 20-24/10; otra (mencionada por el agente de prensa local como dato de contexto sin URL propia) da 26-28/10. Ninguna fuente oficial de Maldonado lo confirma todavía. Se incluyó en "Más adelante" con la discrepancia marcada explícitamente y advertencia de no comprar/difundir sin confirmar.
+  - "EnCanto Criollo" (Pueblo Gaucho): la fuente dice que el certamen es "cada sábado" pero no confirma si la edición de este sábado 10/10 puntual se realiza — se incluyó en el mail con advertencia de fecha no confirmada en vez de omitirlo o darlo por hecho.
+  - Se descartó un hallazgo de un agente sobre un supuesto "Encuentro Internacional de Poesía Esteros" en el MACA (vía ladiaria.com.uy) por no poder verificarlo en ninguna otra fuente ni ubicarlo en la agenda oficial de macamuseo.org — posible error de extracción de la nota.
+  - Se descartó una mención a "Oriana Sabatini" presentando su novela el viernes 9/10 por tratarse de un evento en Montevideo (feria del libro), fuera del territorio de Maldonado.
+  - Se descartó una grilla de Paseo La Pasiva encontrada en Montevideo Portal ("jueves a domingo") por corresponder a una nota de febrero 2025, no de octubre 2026 (verificado por fecha de publicación).
+
+- **Ajuste sugerido para la próxima:**
+  1. Confirmar la fecha real del Festival Internacional de la Canción de Punta del Este (discrepancia 20-24 vs. 26-28/10) apenas haya fuente oficial, antes de que la semana caiga dentro de la ventana.
+  2. Reintentar el PDF de calendario de octubre de la IDM (patrón de URL ya identificado) en los próximos días, puede publicarse después del 8/10.
+  3. Investigar por qué radiovivafm.uy dejó de mostrar la agenda de Cerveceros de Maldonado que había sido productiva las 2 semanas anteriores — puede haber cambiado de sección/formato.
+  4. Dar seguimiento a ticketmaster.uy (ex RedTickets) con prioridad baja — mismo problema de acceso (403) que su predecesor, posible que nunca sea productivo pero vale un par de semanas más antes de descartar definitivamente.
+  5. Confirmar directamente con la Casa de la Cultura de Maldonado la fecha exacta de la presentación del disco "Andar" de Cristhian Ortega, mencionada por La Prensa sin precisar día — si ya pasó o se puede confirmar, corregirlo en el próximo mail.
+  6. **Nota técnica/infraestructura:** esta ejecución tuvo un error humano del agente orquestador (no de las fuentes): el primer envío del mail por Gmail se hizo con el cuerpo HTML mal formado (placeholder/texto escapado en vez del HTML real), y tuvo que reenviarse correctamente. Vale la pena que la próxima ejecución verifique el `htmlBody` antes de enviar, por ejemplo con una lectura rápida del contenido ya armado antes de la llamada a la herramienta de Gmail.
